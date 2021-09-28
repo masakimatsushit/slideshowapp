@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBAction func Tap(_ sender: Any) {
         performSegue(withIdentifier: "toNext", sender: nil)
+        if timer != nil{
+        timer.invalidate()
+        }
     }
     
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
@@ -27,9 +30,9 @@ class ViewController: UIViewController {
     var timer:Timer!
     
     let imageArray = [
-        UIImage(named: "A4D8FCA6-4D27-4862-AE84-5855CD306280_4_5005_c"),
-        UIImage(named:"03EB322C-ECDF-4B90-9F3C-4CE45E0752BC_4_5005_c"),
-        UIImage(named:"D607841F-5DA3-4C42-A26E-9DD395672F18")
+        UIImage(named: "623C2F9E-DC51-43C4-B541-C92715A66BDD_4_5005_c.jpeg"),
+        UIImage(named:"A4D8FCA6-4D27-4862-AE84-5855CD306280_4_5005_c.jpeg"),
+        UIImage(named:"D607841F-5DA3-4C42-A26E-9DD395672F18.jpeg")
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +89,11 @@ class ViewController: UIViewController {
     }
    
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        if timer != nil{
+            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)
+        Next.isEnabled = false
+        Back.isEnabled = false
         }
+    }
 }
 
